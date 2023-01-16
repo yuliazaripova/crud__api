@@ -5,4 +5,6 @@ const METHOD = {
   DELETE: 'DELETE',
 };
 
+export const USERS_URL = /\/api\/users\/([a-zA-Z0-9]+)/
+
 export default METHOD;

@@ -1,9 +1,14 @@
 import 'jest';
 import request from 'supertest';
 import errorMessage from '../common/errors';
+import dotenv from 'dotenv';
 
-const _request = request('http://localhost:4000');
+dotenv.config();
+
+const PORT = process.env.PORT || 5000;
+const _request = request(`http://localhost:${PORT}`);
 const api = '/api/users';
+
 describe('First scenario', () => {
   let id: string;
   it('GET should get an empty array', () =>
@@ -78,7 +83,7 @@ describe('First scenario', () => {
 describe('Second scenario', () => {
   let id: string;
   it('user try to GET person by invalid endpoint and recieve 404', (done) => {
-    _request.get("/wrong-endpoint").expect(
+    _request.get('/wrong-endpoint').expect(
       404,
       {
         message: errorMessage[404],
